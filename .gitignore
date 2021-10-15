@@ -1,4 +1,4 @@
-Skip to content
+﻿Skip to content
  
 Search or jump to…
 
@@ -55,6 +55,7 @@ Latest commit 18aa6d8 on 19 May 2020
 
 # Visual Studio cache directory
 .vs/
+.idea/
 
 # Gradle cache directory
 .gradle/
