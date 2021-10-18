@@ -1,4 +1,7 @@
-﻿public interface IDamageable
+﻿using System;
+
+public interface IDamageable
 {
-    public void TakeDamage(int damage);
+    public event Action OnDead;
+    public void TakeDamage(uint damage);
 }

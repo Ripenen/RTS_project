@@ -1,21 +1,19 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class Unit : MonoBehaviour, IDamageable
+public class Unit : UnitBase, IDamageable, IMovable
 {
-    public IUnitCommander Owner = new PlayerUnitCommander();
-    public event Action OnDead;
+    public readonly IUnitCommander Owner = new PlayerUnitCommander();
     
-    [SerializeField] protected int _health;
-    [SerializeField] protected NavMeshAgent _agent;
-    [SerializeField] private Renderer _renderer;
-
-    public Bounds GetWorldBounds() => _renderer.bounds;
+    [SerializeField] protected uint _health;
+    
+    
 
     public bool IsEnemy(Unit unit) => !ReferenceEquals(unit.Owner, Owner);
 
-    public virtual void TakeDamage(int damage)
+    public event Action OnDead;
+
+    public void TakeDamage(uint damage)
     {
         OnTakeDamage();
         
@@ -33,4 +31,10 @@ public class Unit : MonoBehaviour, IDamageable
 
     protected virtual void Dead() { Destroy(gameObject); }
     protected virtual void OnTakeDamage() { }
+    protected virtual void OnMove() { }
+    public void TryMoveTo(Vector3 point)
+    {
+        _agent.SetDestination(point);
+        OnMove();
+    }
 }

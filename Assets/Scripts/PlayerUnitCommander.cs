@@ -6,15 +6,16 @@ public class PlayerUnitCommander : MonoBehaviour, IUnitCommander
 {
     [SerializeField] private Selector _selector;
     [SerializeField] private PlayerMouseInput _playerMouseInput;
+    [SerializeField] private ClickableObject _terrainClickableObject;
     
-    private UnitsMover _unitsMover = new UnitsMover();
+    private readonly UnitsMover _unitsMover = new UnitsMover();
 
     private void OnEnable()
     {
         _playerMouseInput.MouseDown += _selector.StartSelecting;
         _playerMouseInput.MouseHold += _selector.Select;
         _playerMouseInput.MouseUp += _selector.StopSelecting;
-        _playerMouseInput.MouseUp += TryMoveUnits;
+        _terrainClickableObject.OnClickRmb += TryMoveUnits;
     }
     
 
@@ -23,12 +24,12 @@ public class PlayerUnitCommander : MonoBehaviour, IUnitCommander
         _playerMouseInput.MouseDown -= _selector.StartSelecting;
         _playerMouseInput.MouseHold -= _selector.Select;
         _playerMouseInput.MouseUp -= _selector.StopSelecting;
-        _playerMouseInput.MouseUp -= TryMoveUnits;
+        _terrainClickableObject.OnClickRmb -= TryMoveUnits;
     }
 
-    private void TryMoveUnits()
+    private void TryMoveUnits(Vector3 point)
     {
-        
+        _unitsMover.TryMoveAllTo(point, _selector.SelectedUnits);
     }
     
 }
