@@ -20,7 +20,7 @@ public class UnitsContainer : MonoBehaviour
         
         _unitsOnScene.Add(unit);
         
-        unit.OnDead += () =>
+        unit.Dead += () =>
         {
             _unitsOnScene.Remove(unit);
         };

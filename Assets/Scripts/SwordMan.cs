@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class SwordMan : Unit, ISelectable
 {
-    protected override void Dead()
+    protected override void OnDead()
     {
     }
 

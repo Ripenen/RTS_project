@@ -33,9 +33,10 @@ namespace UnitSelector
         {
             if (!Input.GetKey(KeyCode.LeftShift))
             {
-                _selectedUnits.Clear();
                 foreach (var selectable in _selectedUnits.Cast<ISelectable>())
                     selectable.OnDeselect();
+                
+                _selectedUnits.Clear();
             }
 
             foreach (var unit in units)
@@ -52,7 +53,7 @@ namespace UnitSelector
         {
             var units = _unitsContainer.GetUnitsByCommander<PlayerUnitCommander>();
 
-            return units.Where(unit => unit.IsVisible && _selectorArea.ContainsUnit(unit));
+            return units.Where(unit => _selectorArea.ContainsUnit(unit));
         }
     }
 }

@@ -11,7 +11,7 @@ namespace UnitSelector
         [SerializeField] private Color _borderSelectorColor;
         [SerializeField] private ScreenProjector _screenProjector;
         [SerializeField] private uint _borderWidth;
-    
+        
         private SelectionBox _selectionBox;
         private bool _isDrawing;
         private Rect _selectionRect;
@@ -45,8 +45,11 @@ namespace UnitSelector
         {
             if (!_isDrawing)
                 throw new InvalidOperationException("Drawing is End");
+
+            if (!unit.IsVisible)
+                return false;
             
-            var bounds = unit.GetWorldBounds();
+            var bounds = unit.WorldBounds;
             var unitScreenRect = _screenProjector.WorldBoundsToScreenRect(bounds);
         
             return _selectionRect.Overlaps(unitScreenRect, true); 

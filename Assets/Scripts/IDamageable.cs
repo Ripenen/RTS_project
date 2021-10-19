@@ -2,6 +2,6 @@
 
 public interface IDamageable
 {
-    public event Action OnDead;
+    public event Action Dead;
     public void TakeDamage(uint damage);
 }

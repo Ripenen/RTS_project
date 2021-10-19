@@ -352,6 +352,7 @@ MonoBehaviour:
   _agent: {fileID: 725593432}
   _renderer: {fileID: 725593434}
   _health: 10
+  _speed: 10
 --- !u!195 &725593432
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -444,7 +445,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725593430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.7, y: 0, z: 50.64}
+  m_LocalPosition: {x: 46.7, y: 0.5, z: 50.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
