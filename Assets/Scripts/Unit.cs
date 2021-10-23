@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Unit : UnitBase, IDamageable, IMovable
 {
@@ -30,7 +31,13 @@ public class Unit : UnitBase, IDamageable, IMovable
     public void TryMoveTo(Vector3 point)
     {
         _agent.speed = _speed;
-        _agent.SetDestination(point);
+        var path = new NavMeshPath();
+        _agent.CalculatePath(point, path);
+
+        if (path.status != NavMeshPathStatus.PathComplete) 
+            return;
+        
+        _agent.SetPath(path);
         OnMove();
     }
 

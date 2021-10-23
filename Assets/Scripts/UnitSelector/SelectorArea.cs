@@ -49,8 +49,7 @@ namespace UnitSelector
             if (!unit.IsVisible)
                 return false;
             
-            var bounds = unit.WorldBounds;
-            var unitScreenRect = _screenProjector.WorldBoundsToScreenRect(bounds);
+            var unitScreenRect = _screenProjector.WorldBoundsToScreenRect(unit.WorldBounds);
         
             return _selectionRect.Overlaps(unitScreenRect, true); 
         }

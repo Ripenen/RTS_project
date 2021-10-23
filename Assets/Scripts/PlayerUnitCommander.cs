@@ -15,7 +15,7 @@ public class PlayerUnitCommander : MonoBehaviour, IUnitCommander
         _playerMouseInput.MouseDown += _selector.StartSelecting;
         _playerMouseInput.MouseHold += _selector.Select;
         _playerMouseInput.MouseUp += _selector.StopSelecting;
-        _terrainClickableObject.OnClickRmb += TryMoveUnits;
+        _terrainClickableObject.ClickRmb += TryMoveUnits;
     }
     
 
@@ -24,12 +24,15 @@ public class PlayerUnitCommander : MonoBehaviour, IUnitCommander
         _playerMouseInput.MouseDown -= _selector.StartSelecting;
         _playerMouseInput.MouseHold -= _selector.Select;
         _playerMouseInput.MouseUp -= _selector.StopSelecting;
-        _terrainClickableObject.OnClickRmb -= TryMoveUnits;
+        _terrainClickableObject.ClickRmb -= TryMoveUnits;
     }
 
     private void TryMoveUnits(Vector3 point)
     {
-        _unitsMover.TryMoveAllTo(point, _selector.SelectedUnits);
+        if(!_selector.HasSelectedUnits)
+            return;
+        
+        _unitsMover.MoveGroupTo(point, _selector.SelectedUnits);
     }
     
 }

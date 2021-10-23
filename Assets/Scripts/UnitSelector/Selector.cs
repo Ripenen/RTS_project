@@ -7,6 +7,7 @@ namespace UnitSelector
     public class Selector : MonoBehaviour
     {
         public IEnumerable<Unit> SelectedUnits => _selectedUnits;
+        public bool HasSelectedUnits => _selectedUnits.Count > 0;
 
         [SerializeField] private SelectorArea _selectorArea;
         [SerializeField] private UnitsContainer _unitsContainer;

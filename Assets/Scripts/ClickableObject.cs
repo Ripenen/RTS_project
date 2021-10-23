@@ -4,18 +4,18 @@ using UnityEngine.EventSystems;
 
 public class ClickableObject : MonoBehaviour, IPointerClickHandler
 {
-    public event Action<Vector3> OnClickLmb;
-    public event Action<Vector3> OnClickRmb;
+    public event Action<Vector3> ClickLmb;
+    public event Action<Vector3> ClickRmb;
     
     public void OnPointerClick(PointerEventData eventData)
     {
         switch (eventData.button)
         {
             case PointerEventData.InputButton.Left:
-                OnClickLmb?.Invoke(eventData.pointerCurrentRaycast.worldPosition);
+                ClickLmb?.Invoke(eventData.pointerCurrentRaycast.worldPosition);
                 break;
             case PointerEventData.InputButton.Right:
-                OnClickRmb?.Invoke(eventData.pointerCurrentRaycast.worldPosition);
+                ClickRmb?.Invoke(eventData.pointerCurrentRaycast.worldPosition);
                 break;
         }
     }
