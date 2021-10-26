@@ -6,7 +6,7 @@ public class ClickableObject : MonoBehaviour, IPointerClickHandler
 {
     public event Action<Vector3> ClickLmb;
     public event Action<Vector3> ClickRmb;
-    
+
     public void OnPointerClick(PointerEventData eventData)
     {
         switch (eventData.button)

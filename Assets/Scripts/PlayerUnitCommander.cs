@@ -1,6 +1,7 @@
 ﻿using System;
 using UnitSelector;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerUnitCommander : MonoBehaviour, IUnitCommander
 {
@@ -12,19 +13,20 @@ public class PlayerUnitCommander : MonoBehaviour, IUnitCommander
 
     private void OnEnable()
     {
-        _playerMouseInput.MouseDown += _selector.StartSelecting;
-        _playerMouseInput.MouseHold += _selector.Select;
-        _playerMouseInput.MouseUp += _selector.StopSelecting;
         _terrainClickableObject.ClickRmb += TryMoveUnits;
+        _playerMouseInput.AddMouseHandler(MouseButton.LeftMouse, MouseState.Down, _selector.StartSelecting);
+        _playerMouseInput.AddMouseHandler(MouseButton.LeftMouse, MouseState.Hold, _selector.Select);
+        _playerMouseInput.AddMouseHandler(MouseButton.LeftMouse, MouseState.Up, _selector.StopSelecting);
     }
     
 
     private void OnDisable()
     {
-        _playerMouseInput.MouseDown -= _selector.StartSelecting;
-        _playerMouseInput.MouseHold -= _selector.Select;
-        _playerMouseInput.MouseUp -= _selector.StopSelecting;
         _terrainClickableObject.ClickRmb -= TryMoveUnits;
+        
+        _playerMouseInput.RemoveHandler(_selector.StartSelecting);
+        _playerMouseInput.RemoveHandler(_selector.Select);
+        _playerMouseInput.RemoveHandler(_selector.StopSelecting);
     }
 
     private void TryMoveUnits(Vector3 point)
@@ -34,5 +36,4 @@ public class PlayerUnitCommander : MonoBehaviour, IUnitCommander
         
         _unitsMover.MoveGroupTo(point, _selector.SelectedUnits);
     }
-    
 }

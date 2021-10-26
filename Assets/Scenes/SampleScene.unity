@@ -330,8 +330,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 534669904}
+  _input: {fileID: 1969623534}
   _movingSpeed: 20
   _zoomSpeed: 200
+  _catchSpeed: 0
+  dragSpeed: 2
 --- !u!1 &725593430
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +638,7 @@ MonoBehaviour:
   _backgroundSelectorColor: {r: 0.38811982, g: 0.8301887, b: 0.3485226, a: 0}
   _borderSelectorColor: {r: 1, g: 1, b: 1, a: 1}
   _screenProjector: {fileID: 2035785401}
-  _borderWidth: 30
+  _borderWidth: 3
 --- !u!114 &1651472151
 MonoBehaviour:
   m_ObjectHideFlags: 0
