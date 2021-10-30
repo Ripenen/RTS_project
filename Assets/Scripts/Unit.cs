@@ -6,16 +6,19 @@ public class Unit : UnitBase, IDamageable, IMovable
 {
     public readonly IUnitCommander Owner = new PlayerUnitCommander();
     
-    [SerializeField] protected uint _health;
+    [SerializeField] protected int _health;
     [SerializeField] protected float _speed;
-    
-    
+
+    private void Start()
+    {
+        _agent.speed = _speed;
+    }
 
     public bool IsEnemy(Unit unit) => !ReferenceEquals(unit.Owner, Owner);
 
     public event Action Dead;
 
-    public void TakeDamage(uint damage)
+    public void TakeDamage(int damage)
     {
         OnTakeDamage();
         
@@ -30,7 +33,6 @@ public class Unit : UnitBase, IDamageable, IMovable
 
     public void TryMoveTo(Vector3 point)
     {
-        _agent.speed = _speed;
         var path = new NavMeshPath();
         _agent.CalculatePath(point, path);
 

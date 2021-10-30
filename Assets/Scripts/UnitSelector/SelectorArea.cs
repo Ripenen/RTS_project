@@ -16,9 +16,17 @@ namespace UnitSelector
         private bool _isDrawing;
         private Rect _selectionRect;
 
-        private void Start()
+        private void Awake()
         {
             _selectionBox = new SelectionBox(_backgroundSelectorColor, _borderSelectorColor, _borderWidth);
+        }
+
+        private void OnGUI()
+        {
+            if (_isDrawing)
+            {
+                _selectionBox.Draw(_selectionRect);
+            }
         }
 
         public void StartDraw(Vector2 startPos)
@@ -27,6 +35,7 @@ namespace UnitSelector
         
             _selectionRect = new Rect(startPos, Vector2.zero);
         }
+
         public void Draw(Vector2 endPos)
         {
             if (!_isDrawing)
@@ -52,14 +61,6 @@ namespace UnitSelector
             var unitScreenRect = _screenProjector.WorldBoundsToScreenRect(unit.WorldBounds);
         
             return _selectionRect.Overlaps(unitScreenRect, true); 
-        }
-
-        private void OnGUI()
-        {
-            if (_isDrawing)
-            {
-                _selectionBox.Draw(_selectionRect);
-            }
         }
     }
 }
