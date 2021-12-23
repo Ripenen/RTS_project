@@ -54,7 +54,7 @@ namespace UnitSelector
         {
             var units = _unitsContainer.GetUnitsByCommander<PlayerUnitCommander>();
 
-            return units.Where(unit => _selectorArea.ContainsUnit(unit));
+            return units.Where(unit => _selectorArea.OverlapsUnit(unit));
         }
     }
 }

@@ -9,10 +9,11 @@ public class SwordMan : Unit, ISelectable
 
     public void OnSelect()
     {
-        Debug.Log("selected");
+        SetUnitColor(Color.red);
     }
 
     public void OnDeselect()
     {
+        SetUnitColor(Color.white);
     }
 }

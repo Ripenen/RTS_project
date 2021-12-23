@@ -8,4 +8,5 @@ public class UnitBase : MonoBehaviour
 
     public Bounds WorldBounds => _renderer.bounds;
     public bool IsVisible => _renderer.isVisible;
+    protected void SetUnitColor(Color color) => _renderer.material.color = color;
 }

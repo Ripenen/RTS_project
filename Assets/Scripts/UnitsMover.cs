@@ -7,17 +7,17 @@ public class UnitsMover
     public void MoveGroupTo(Vector3 point, IEnumerable<Unit> units)
     {
         var unitsList = units.ToList();
-        /*
-        foreach (var unit in units)
-        {
-            unit.TryMoveTo(point);
-        }*/
 
-        var centerPos = unitsList[0].transform.position;
-        unitsList[0].TryMoveTo(point);
-        for (int i = 1; i < unitsList.Count; i++)
+        Vector3 vectorSum = Vector3.zero;
+        foreach (var unit in unitsList)
         {
-            unitsList[i].TryMoveTo(point + (unitsList[i].transform.position - centerPos));
+            vectorSum += unit.transform.position;
+        }
+
+        var center = vectorSum / unitsList.Count;
+        foreach (var unit in unitsList)
+        {
+            unit.TryMoveTo(point + (unit.transform.position - center).normalized * 2);
         }
     }      
 }

@@ -50,7 +50,7 @@ namespace UnitSelector
             _isDrawing = false;
         }
 
-        public bool ContainsUnit(Unit unit)
+        public bool OverlapsUnit(UnitBase unit)
         {
             if (!_isDrawing)
                 throw new InvalidOperationException("Drawing is End");
